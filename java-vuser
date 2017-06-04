@@ -1,0 +1,33 @@
+import lrapi.lr;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class Actions {   
+  private Connection conn=null;   
+  private Statement stmt=null;   
+  private ResultSet rs=null;   
+  private String server="";  
+  private String dataBase="";
+  private String username="";
+  private String passworkd="";
+  public int init() throws Throwable {       
+      Class.forName("com.mysql.jdbc.Driver").newInstance();       
+      conn=DriverManager.getConnection("jdbc:mysql://"+server+"/dkhs?user="+username+"&password="+passworkd);
+      stmt=conn.createStatement();       
+      return 0;   
+  }   
+  public int action() throws Throwable {       
+    rs=stmt.executeQuery("select * from accounts_user");       
+    while(rs.next()) {           
+      lr.error_message(rs.getString("username")); //打印出查询的结果                  
+    }       
+    return 0;   
+  }   
+  public int end() throws Throwable {       
+    stmt.close();       
+    conn.close();       
+    return 0;   
+   }
+}
