@@ -25,7 +25,7 @@ while [ $iter != 3 ]; do
                         sum=$(echo "$sum+$temp" | bc)
                         echo Tic #Heartbeat
                         count=$((count+1))
-                        sleep 1m
+                        sleep 58s
                 fi
         done
         sum=$(echo "$sum/$count" | bc)
