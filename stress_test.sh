@@ -30,7 +30,7 @@ while [ $iter != 3 ]; do
         done
         sum=$(echo "$sum/$count" | bc)
         count=$(mysql --host=10.1.10.110 --user=root --password=root -se "use #database#; select count(*) from #database#;")
-        echo -e "$(date +%Y%m%d%H%m%d)\t$count\t$sum" >> test.txt
+        echo -e "$(date --rfc-3339 seconds)\t$count\t$sum" >> test.txt
         echo Tak #Heartbeat
         iter=$((iter+1))
 done
